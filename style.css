@@ -1,6 +1,9 @@
-h1 {
-  margin-left: 20px
-}
-body {
-  background-color: #F6e9d1
-}
+/*
+  Use the following to include this css file
+  <link rel="stylesheet" href="styles1.css" />
+*/
+.h1 {margin-left:20px;
+   font-style: italic;
+   font-family: serif;
+   color:#895129;}
+body {background-color: #F6e9d1;}
