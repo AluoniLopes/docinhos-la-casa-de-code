@@ -1,9 +1,22 @@
-/*
-  Use the following to include this css file
-  <link rel="stylesheet" href="styles1.css" />
-*/
-.h1 {margin-left:20px;
-   font-style: italic;
-   font-family: serif;
-   color:#895129;}
-body {background-color: #F6e9d1;}
+header {
+  border-style: dashed;
+  border-radius: 10px;
+  padding: 10px;
+  background-image: url(img/image.png);
+}
+
+h1 {
+  margin: 10px;
+  font-style: italic;
+  font-family: serif;
+  color: #895129;
+}
+
+nav {
+  float:right
+}
+
+body {
+  background-color: #f6e9d1;
+
+}
