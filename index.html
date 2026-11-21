@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="ti,programacao,doces,personalizado, alunos, uninove, site, vendas">
+    <meta name="description" content="e-commerce ficticio para projeto de extensão em empreendedorismo">
+    <meta name="author" content="Aluoni, Julia, Leandro, Millene, Vitoria">
+    <title>La Casa de Code | Confeitaria & TI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-conteudo">
+            <a href="#inicio" class="logo">
+                <img src="img/logo.png" alt="Logo La Casa de Code" class="logo-img">
+                <span>La Casa de Code</span>
+            </a>
+            <ul class="menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#cardapio">Cardápio</a></li>
+                <li><a href="#carrinho">Carrinho (<span id="qtd-carrinho">0</span>)</a></li>
+                <li><a href="#pedidos">Meus Pedidos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Tela Inicial (Home) -->
+    <header id="inicio" class="banner">
+        <div class="container">
+            <h1>Doces com syntax error de tão bons</h1>
+            <p>Compile sua felicidade com nossas receitas artesanais.</p>
+            <a href="#cardapio" class="btn-destaque">Ver Cardápio</a>
+
+            <!-- Carrossel / Vitrine Simples de Destaques -->
+            <div class="destaque-box">
+                <span class="tag-destaque">Destaque do Dia</span>
+                <h3 id="titulo-destaque">Enroladinho de Python</h3>
+                <p id="desc-destaque">Rico em açúcar e indentação perfeita para suas tardes de estudo.</p>
+                <div class="controles-carrossel">
+                    <button type="button" onclick="mudarDestaque(-1)">👈Anterior</button>
+                    <button type="button" onclick="mudarDestaque(1)">Próximo👉</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Tela de Cardápio -->
+        <section id="cardapio" class="secao">
+            <h2>Nosso Cardápio</h2>
+            <div class="grid-produtos">
+
+                <div class="card-produto">
+                    <img src="img/enroladinho-python.png" alt="enroladinho-python">
+                    <div class="card-info">
+                        <h3>Enroladinho de Python</h3>
+                        <p>Rico em açúcar e indentação perfeita. Massa de chocolate com cobertura cremosa.</p>
+                        <span class="preco">R$ 12,00</span>
+                        <button type="button" onclick="adicionarAoCarrinho('Enroladinho de Python', 12.00)">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <div class="card-produto">
+                    <img src="img/brownie-fullstack.png" alt="Brownie Full-Stack">
+                    <div class="card-info">
+                        <h3>Brownie Full-Stack</h3>
+                        <p>Camadas completas do front-end crocante ao back-end super cremoso de chocolate meio amargo.</p>
+                        <span class="preco">R$ 15,00</span>
+                        <button type="button" onclick="adicionarAoCarrinho('Brownie Full-Stack', 15.00)">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <div class="card-produto">
+                    <img src="img/cookie-cache.png" alt="Cookie Cache Limpo">
+                    <div class="card-info">
+                        <h3>Cookie Cache Limpo</h3>
+                        <p>Leve, crocante e sem resíduos. Gotas generosas de chocolate ao leite e branco.</p>
+                        <span class="preco">R$ 8,50</span>
+                        <button type="button" onclick="adicionarAoCarrinho('Cookie Cache Limpo', 8.50)">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <div class="card-produto">
+                    <img src="img/bolo_deploy.png" alt="Bolo de Pote Deploy">
+                    <div class="card-info">
+                        <h3>Bolo de Pote Deploy</h3>
+                        <p>Pronto para ir para produção direto na sua mesa. Recheio duplo de Ninho com morango.</p>
+                        <span class="preco">R$ 18,00</span>
+                        <button type="button" onclick="adicionarAoCarrinho('Bolo de Pote Deploy', 18.00)">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tela de Carrinho e Checkout -->
+        <section id="carrinho" class="secao box-branco">
+            <h2>Carrinho e Checkout</h2>
+
+            <ul id="lista-carrinho" class="lista-itens">
+                <li>Seu carrinho está vazio.</li>
+            </ul>
+
+            <div class="checkout-grid">
+                <div class="bloco-checkout">
+                    <h3>1. Calcular Frete</h3>
+                    <label for="cep-cliente">CEP de Entrega:</label>
+                    <div class="linha-cep">
+                        <input type="text" id="cep-cliente" placeholder="00000-000" maxlength="9">
+                        <button type="button" onclick="calcularFrete()">Calcular</button>
+                    </div>
+                    <p id="info-frete" class="texto-apoio">Frete ainda não calculado.</p>
+                </div>
+
+                <div class="bloco-checkout">
+                    <h3>2. Entrega e Pagamento</h3>
+                    <label for="nome-cliente">Nome Completo:</label>
+                    <input type="text" id="nome-cliente" placeholder="Digite seu nome">
+
+                    <label for="endereco-cliente">Endereço e Número:</label>
+                    <input type="text" id="endereco-cliente" placeholder="Ex: Rua da Lógica, 404">
+
+                    <label for="forma-pagamento">Forma de Pagamento:</label>
+                    <select id="forma-pagamento">
+                        <option value="PIX">PIX (Aprovação imediata)</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito na Entrega</option>
+                        <option value="Cartão de Débito">Cartão de Débito na Entrega</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="resumo-valores">
+                <p>Subtotal: R$ <span id="valor-subtotal">0.00</span></p>
+                <p>Frete: R$ <span id="valor-frete">0.00</span></p>
+                <p class="total-final">Total a Pagar: R$ <span id="valor-total">0.00</span></p>
+                <button type="button" class="btn-finalizar" onclick="finalizarPedido()">Confirmar Pedido</button>
+            </div>
+        </section>
+
+        <!-- Tela de Acompanhamento e Cancelamento -->
+        <section id="pedidos" class="secao">
+            <h2>Meus Pedidos (Acompanhamento)</h2>
+            <p class="aviso-cancelamento">Você pode cancelar seu pedido em até 10 minutos após a confirmação caso tenha comprado por engano.</p>
+            <div id="lista-pedidos">
+                <p>Nenhum pedido realizado até o momento.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer id="contato">
+        <div class="container">
+            <h3>La Casa de Code</h3>
+            <p>Atendimento: Segunda a Sábado, das 10h às 20h</p>
+            <p>WhatsApp: (11) 99999-0000 | E-mail: contato@lacasadecode.com.br</p>
+            <p class="copy">&copy; 2026 La Casa de Code - Projeto Acadêmico ADS</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
